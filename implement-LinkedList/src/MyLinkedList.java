@@ -10,10 +10,10 @@ public class MyLinkedList<E> {
             this.data = data;
         }
 
-        private Node(E data, Node next){
-            this.data = data;
-            this.next = next;
-        }
+//        private Node(E data, Node next){
+//            this.data = data;
+//            this.next = next;
+//        }
 
         public E getData(){
             return this.data;
@@ -95,16 +95,18 @@ public class MyLinkedList<E> {
             Node temp = head;
             for (int i = 0; i < index - 1 && temp.next != null; i++){
                 temp = temp.next;
-                result = temp.next.getData();
             }
+            result = temp.next.getData();
+
             if (temp.next.next != null){
                 Node holder = temp.next.next;
-                temp.next = holder;
+                temp.next = holder; //delete middle
             } else {
-                temp.next = null;
+                temp.next = null; //if delete tail
             }
         } else {
-            head = head.next;
+            result = head.getData();
+            head = head.next; //if delete head
         }
         numNodes--;
         return result;
@@ -160,14 +162,14 @@ public class MyLinkedList<E> {
         return false;
     }
 
-    @Override
-    public MyLinkedList<E> clone(){
-        MyLinkedList<E> newList = new MyLinkedList<>();
-        newList.head = new Node(head.getData(), head.next);
-        newList.head.next = head.next;
-        newList.numNodes = numNodes;
-        return newList;
-    }
+//    @Override
+//    public MyLinkedList<E> clone(){
+//        MyLinkedList<E> newList = new MyLinkedList<>();
+//        newList.head = new Node(head.getData(), head.next);
+//        newList.head.next = head.next;
+//        newList.numNodes = numNodes;
+//        return newList;
+//    }
 
     //passed
     public void printList(){
